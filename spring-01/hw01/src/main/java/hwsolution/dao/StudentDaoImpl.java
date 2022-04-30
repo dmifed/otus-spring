@@ -1,7 +1,6 @@
 package hwsolution.dao;
 
 import hwsolution.domain.Student;
-import hwsolution.exceptions.NoSuchStudentInDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.Optional;
 public class StudentDaoImpl implements StudentDao{
 
 
-    private static List<Student> students = new ArrayList<>();
+    private static final List<Student> students = new ArrayList<>();
 
     @Override
     public Optional<Student> findById(int id) {
