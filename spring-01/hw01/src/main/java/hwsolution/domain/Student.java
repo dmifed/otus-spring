@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Student {
+
+    private static int ids = -1;
+
     @Getter
     private final String firstName;
 
@@ -17,13 +20,16 @@ public class Student {
     @Getter
     private int score = -1;
 
+    private final int id;
+
     @Getter
-    private List<String> answers;
+    private final List<String> answers;
 
     public Student(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.answers = new ArrayList<>();
+        this.id = ++ids;
         StudentHolder.getStudents().add(this);
     }
 
