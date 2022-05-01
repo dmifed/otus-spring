@@ -15,8 +15,7 @@ public class Student {
     private final String lastName;
 
     @Getter
-    @Setter
-    private int score;
+    private int score = -1;
 
     @Getter
     private List<String> answers;
@@ -25,8 +24,12 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.answers = new ArrayList<>();
-        StudentDaoImpl.addStudent(this);
+        StudentHolder.getStudents().add(this);
     }
 
-
+    public void setScore(int score) {
+        if (this.score == -1) {
+            this.score = score;
+        }
+    }
 }

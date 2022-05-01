@@ -1,6 +1,7 @@
 package hwsolution.dao;
 
 import hwsolution.domain.Student;
+import hwsolution.domain.StudentHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.Optional;
 public class StudentDaoImpl implements StudentDao{
 
 
-    private static final List<Student> students = new ArrayList<>();
+    private static final List<Student> students = StudentHolder.getStudents();
 
     @Override
     public Optional<Student> findById(int id) {
