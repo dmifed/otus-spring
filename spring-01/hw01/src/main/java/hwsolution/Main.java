@@ -1,5 +1,6 @@
 package hwsolution;
 
+import hwsolution.domain.Student;
 import hwsolution.service.ask.Asker;
 import hwsolution.service.score.Score;
 import hwsolution.service.student.StudentService;
@@ -15,9 +16,17 @@ public class Main {
         Asker asker = context.getBean(Asker.class);
         Score score = context.getBean(Score.class);
 
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < 2; i++){
             asker.acquaintance();
             asker.ask();
+        }
+
+        asker.finish();
+
+        for(int i = 0; i < 2; i++){
+            Student student = studentService.getById(i).orElse(new Student("default", "default"));
+            score.calcScore(student);
+            System.out.println(student.toString());
         }
 
     }

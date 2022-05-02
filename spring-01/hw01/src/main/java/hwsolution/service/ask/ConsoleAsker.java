@@ -25,12 +25,18 @@ public class ConsoleAsker implements Asker {
         this.student = new Student(firstName, secondName);
     }
 
+    @Override
     public void ask(){
         List<String> questions = csvData.getQuestions();
         for(String q : questions){
             System.out.println(q);
             student.getAnswers().add(scanner.nextLine());
         }
+        //scanner.close();
+    }
+
+    @Override
+    public void finish() {
         scanner.close();
     }
 }

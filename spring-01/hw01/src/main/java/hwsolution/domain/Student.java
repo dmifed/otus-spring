@@ -3,10 +3,11 @@ package hwsolution.domain;
 import hwsolution.dao.StudentDaoImpl;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@ToString
 public class Student {
 
     private static int ids = -1;
@@ -20,9 +21,12 @@ public class Student {
     @Getter
     private int score = -1;
 
+    @Getter
+    @ToString.Exclude
     private final int id;
 
     @Getter
+    @ToString.Exclude
     private final List<String> answers;
 
     public Student(String firstName, String lastName) {

@@ -2,6 +2,7 @@ package hwsolution.service.score;
 
 import hwsolution.domain.Student;
 import hwsolution.service.ask.CSVData;
+import org.w3c.dom.ls.LSOutput;
 
 import java.util.List;
 
@@ -26,11 +27,15 @@ public class ScoreImpl implements Score{
     @Override
     public void calcScore(Student student) {
         int score = 0;
-        List<String> questions = csvData.getQuestions();
-        List<String> answers = student.getAnswers();
-        for(int i = 0; i < answers.size(); i++){
-            if(answers.get(i).equalsIgnoreCase(questions.get(i))){
-                ++score;
+        List<String> rightAnswers = csvData.getAnswers();
+        List<String> studentAnswers = student.getAnswers();
+        for(int i = 0; i < studentAnswers.size(); i++){
+            String[] varsAnswer = rightAnswers.get(i).split("&");
+            for(String ans : varsAnswer){
+                if(studentAnswers.get(i).equalsIgnoreCase(ans)){
+                    ++score;
+                    break;
+                }
             }
         }
         student.setScore(score);

@@ -21,7 +21,7 @@ public class CSVData {
     public CSVData() {
         Properties properties = new Properties();
         try {
-            properties.load(new FileInputStream(new File("src\\main\\resources\\config.properties")));
+            properties.load(new FileInputStream(new File("spring-01\\hw01\\src\\main\\resources\\config.properties")));
             this.path = properties.getProperty("path.to.test");
             init();
         } catch (IOException e) {
