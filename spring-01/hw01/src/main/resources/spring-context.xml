@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="csvData" class="hwsolution.service.ask.CSVData"/>
+    <bean id="studentDao" class="hwsolution.dao.StudentDaoImpl"/>
+
+    <bean id="studentService" class="hwsolution.service.student.StudentServiceImpl">
+        <constructor-arg name="studentDao" ref="studentDao"/>
+    </bean>
+
+    <bean id="asker" class="hwsolution.service.ask.ConsoleAsker">
+        <constructor-arg name="csvData" ref="csvData"/>
+    </bean>
+
+    <bean id="score" class="hwsolution.service.score.ScoreImpl">
+        <constructor-arg name="csvData" ref="csvData"/>
+    </bean>
+
+
+</beans>
