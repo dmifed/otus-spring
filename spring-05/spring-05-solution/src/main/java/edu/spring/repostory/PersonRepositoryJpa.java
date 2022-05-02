@@ -30,8 +30,8 @@ public class PersonRepositoryJpa implements PersonRepository {
     @Override
     public Person getFirst() {
         TypedQuery<Person> query = em.createQuery(
-            "select e from Employee e where e.id = 1",
-            Person.class);
+                "select e from Employee e where e.id = 1",
+                Person.class);
         return query.getSingleResult();
     }
 

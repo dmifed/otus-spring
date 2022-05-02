@@ -40,7 +40,7 @@ public class PersonDaoJdbc implements PersonDao {
     public Person getById(int id) {
         Map<String, Object> params = Collections.singletonMap("id", id);
         return namedParameterJdbcOperations.queryForObject(
-            "select * from persons where id = :id", params, new PersonMapper()
+                "select * from persons where id = :id", params, new PersonMapper()
         );
     }
 
@@ -53,7 +53,7 @@ public class PersonDaoJdbc implements PersonDao {
     public void deleteById(int id) {
         Map<String, Object> params = Collections.singletonMap("id", id);
         namedParameterJdbcOperations.update(
-            "delete from persons where id = :id", params
+                "delete from persons where id = :id", params
         );
     }
 

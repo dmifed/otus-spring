@@ -20,14 +20,14 @@ public class PersonController {
     @GetMapping("/person")
     public List<PersonDto> get() {
         return repository.findAll().stream()
-            .map(PersonDto::toDto)
-            .collect(Collectors.toList());
+                .map(PersonDto::toDto)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/person/{id}")
     public PersonDto get(@PathVariable("id") int id) {
         Person person = repository.findById(id)
-            .orElseThrow(NotFoundException::new);
+                .orElseThrow(NotFoundException::new);
         return PersonDto.toDto(person);
     }
 
