@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean id="csvData" class="hwsolution.service.ask.CSVData"/>
+    <bean id="csvData" class="hwsolution.domain.CSVData"/>
     <bean id="studentDao" class="hwsolution.dao.StudentDaoImpl"/>
 
     <bean id="studentService" class="hwsolution.service.student.StudentServiceImpl">

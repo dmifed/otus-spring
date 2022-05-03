@@ -1,4 +1,4 @@
-package hwsolution.service.ask;
+package hwsolution.domain;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;

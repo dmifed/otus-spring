@@ -1,8 +1,7 @@
 package hwsolution.service.score;
 
 import hwsolution.domain.Student;
-import hwsolution.service.ask.CSVData;
-import org.w3c.dom.ls.LSOutput;
+import hwsolution.domain.CSVData;
 
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class ScoreImpl implements Score{
         List<String> rightAnswers = csvData.getAnswers();
         List<String> studentAnswers = student.getAnswers();
         for(int i = 0; i < studentAnswers.size(); i++){
-            String[] varsAnswer = rightAnswers.get(i).split("&");
+            String[] varsAnswer = rightAnswers.get(i).split("&&");
             for(String ans : varsAnswer){
                 if(studentAnswers.get(i).equalsIgnoreCase(ans)){
                     ++score;

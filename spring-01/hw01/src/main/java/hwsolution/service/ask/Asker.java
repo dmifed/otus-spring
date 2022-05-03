@@ -1,7 +1,11 @@
 package hwsolution.service.ask;
 
+import hwsolution.domain.Student;
+
+import java.util.List;
+
 public interface Asker {
-    void acquaintance();
-    void ask();
-    void finish();
+
+    List<String> getStudentAnswer(Student student);
+    void close();
 }

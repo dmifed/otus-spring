@@ -26,8 +26,9 @@ public class Student {
     private final int id;
 
     @Getter
+    @Setter
     @ToString.Exclude
-    private final List<String> answers;
+    private List<String> answers;
 
     public Student(String firstName, String lastName) {
         this.firstName = firstName;
