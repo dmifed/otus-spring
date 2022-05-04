@@ -32,6 +32,7 @@ class CreateImplTest {
         output.flush();
         testStudent = create.create(input, output);
         input.close();
+        output.close();
 
         assertNotNull(testStudent);
         assertEquals(testStudent.getFirstName(), student.getFirstName());
