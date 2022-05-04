@@ -34,7 +34,8 @@ public class Main {
 
         for(int i = 0; i < 2; i++){
             Student student = studentService.getById(i).orElse(new Student("default", "default"));
-            score.calcScore(student);
+            int scoreInt = score.calcScore(student);
+            student.setScore(scoreInt);
             System.out.println(student.toString());
         }
 

@@ -13,18 +13,7 @@ public class ScoreImpl implements Score{
     }
 
     @Override
-    public int getScore(Student student) {
-        if(student.getScore() != -1){
-            return student.getScore();
-        }else {
-            calcScore(student);
-            return student.getScore();
-        }
-
-    }
-
-    @Override
-    public void calcScore(Student student) {
+    public int calcScore(Student student) {
         int score = 0;
         List<String> rightAnswers = csvData.getAnswers();
         List<String> studentAnswers = student.getAnswers();
@@ -37,6 +26,6 @@ public class ScoreImpl implements Score{
                 }
             }
         }
-        student.setScore(score);
+        return score;
     }
 }
