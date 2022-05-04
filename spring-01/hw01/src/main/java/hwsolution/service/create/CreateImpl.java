@@ -2,38 +2,23 @@ package hwsolution.service.create;
 
 import hwsolution.domain.Student;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class CreateImpl implements Create{
-    Scanner scanner;
-    private List<String> acquaintanceQuestions;
-
-    public CreateImpl() {
-        acquaintanceQuestions = new ArrayList<>();
-        acquaintanceQuestions.add("enter your first name");
-        acquaintanceQuestions.add("enter your last name");
-        scanner = new Scanner(System.in);
-    }
 
     @Override
-    public Student create(String firstName, String lastName) {
-        scanner = new Scanner(System.in);
-        firstName = getName("enter your first name");
-        lastName = getName("enter your last name");
+    public Student create(Scanner input, PrintStream output) {
+        String firstName = getName(input, output, "enter your first name \n");
+        String lastName = getName(input, output, "enter your last name \n");
         return new Student(firstName, lastName);
     }
 
 
 
-    private String getName(String message){
-        System.out.println(message);
-        return scanner.nextLine();
+    private String getName(Scanner input, PrintStream output, String message){
+        output.print(message);
+        return input.nextLine();
     }
 
-    @Override
-    public void close() {
-        scanner.close();
-    }
 }

@@ -2,7 +2,10 @@ package hwsolution.service.create;
 
 import hwsolution.domain.Student;
 
+import java.io.PrintStream;
+import java.util.Scanner;
+
 public interface Create {
-    Student create(String firstName, String lastName);
-    void close();
+    Student create(Scanner input, PrintStream output);
+
 }
