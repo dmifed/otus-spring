@@ -1,19 +1,15 @@
 package hwsolution.service.score;
 
-import hwsolution.domain.CSVData;
+import hwsolution.service.data.CSVData;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by DIMA, on 04.05.2022

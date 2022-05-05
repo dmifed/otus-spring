@@ -1,7 +1,6 @@
 package hwsolution.service.ask;
 
-import hwsolution.domain.CSVData;
-import hwsolution.domain.Student;
+import hwsolution.service.data.CSVData;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
