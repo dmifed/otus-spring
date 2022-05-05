@@ -3,6 +3,8 @@ package hwsolution.service.score;
 import hwsolution.domain.Student;
 import hwsolution.service.data.CSVData;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ScoreImpl implements Score{
@@ -13,9 +15,9 @@ public class ScoreImpl implements Score{
     }
 
     @Override
-    public int calcScore(Student student) {
+    public int calcScore(Student student, File data) {
         int score = 0;
-        List<String> rightAnswers = csvData.getAnswers();
+        List<String> rightAnswers = new ArrayList<>(csvData.getData(data).keySet());
         List<String> studentAnswers = student.getAnswers();
         for(int i = 0; i < studentAnswers.size(); i++){
             String[] varsAnswer = rightAnswers.get(i).split("&&");
