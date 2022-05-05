@@ -8,6 +8,6 @@ import java.util.Scanner;
 
 public interface Asker {
 
-    List<String> getAnswers(Scanner input, PrintStream output);
+    List<String> getAnswers(Scanner input, PrintStream output,List<String> questions);
 
 }

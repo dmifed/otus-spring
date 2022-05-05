@@ -1,46 +1,43 @@
 package hwsolution.service.score;
 
-import hwsolution.service.data.CSVData;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Created by DIMA, on 04.05.2022
  */
 class ScoreImplTest {
-    Path path;
     Score score;
-    CSVData csvData;
+    List<List<String>> testAnswers;
+    List<String> studentsAnswers;
 
     @BeforeEach
     void setUp() {
-        score = new ScoreImpl(csvData);
-        try {
-            path = Files.createTempFile("testData", ".scv");
-            Files.writeString(path, "оккервиль это что?,река", StandardCharsets.UTF_8, StandardOpenOption.APPEND);
-            Files.writeString(path, "семки есть?,надо поискать&&а если найду", StandardCharsets.UTF_8, StandardOpenOption.APPEND);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        score = new ScoreImpl();
+        List<String> first = new ArrayList<>();
+        first.add("река");
+        List<String> second = new ArrayList<>();
+        second.add("надо поискать");
+        second.add("а если найду");
+        testAnswers = new ArrayList<>();
+        testAnswers.add(first);
+        testAnswers.add(second);
+        studentsAnswers = new ArrayList<>();
+        studentsAnswers.add("[p");
+        studentsAnswers.add("а если найду");
+
     }
 
-    @AfterEach
-    void tearDown() {
-        try {
-            Files.deleteIfExists(path);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Test
     void calcScore() {
+        int target = 1;
+        int test = score.calcScore(studentsAnswers, testAnswers);
+        assertEquals(target, test);
     }
 }

@@ -12,25 +12,26 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Created by DIMA, on 04.05.2022
  */
-class CreateImplTest {
-    private Create create;
+class CreatorImplTest {
+    private Creator creator;
     private Student student;
 
     @BeforeEach
     void setUp() {
-        create = new CreateImpl();
+        creator = new CreatorImpl();
         student = new Student("F", "L");
     }
 
     @Test
     void create() {
+
         Student testStudent;
         Scanner input = new Scanner("F\nL");
         OutputStream outputStream = new ByteArrayOutputStream();
 
         PrintStream output = new PrintStream(outputStream);
         output.flush();
-        testStudent = create.create(input, output);
+        testStudent = creator.create(input, output);
         input.close();
         output.close();
 

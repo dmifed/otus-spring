@@ -4,36 +4,42 @@ import hwsolution.domain.PropertyFile;
 import hwsolution.domain.Student;
 import hwsolution.exceptions.PropertiesNotFoundException;
 import hwsolution.service.ask.Asker;
-import hwsolution.service.create.Create;
+import hwsolution.service.create.Creator;
+import hwsolution.service.data.Data;
 import hwsolution.service.score.Score;
 import hwsolution.service.student.StudentService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.lang.NonNull;
 
 import java.io.File;
 import java.io.PrintStream;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws PropertiesNotFoundException {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-context.xml");
-        File data = new PropertyFile().getFile();
+        File dataFile = new PropertyFile().getFile();
 
 
         StudentService studentService = context.getBean(StudentService.class);
         Asker asker = context.getBean(Asker.class);
         Score score = context.getBean(Score.class);
-        Create create = context.getBean(Create.class);
+        Creator creator = context.getBean(Creator.class);
+        Data csvData = context.getBean(Data.class);
 
         Scanner input = new Scanner(System.in);
         PrintStream output = System.out;
+        Map<String, List<String>> dataMap = csvData.getData(dataFile);
+
+        List<String> question = csvData.getQuestions(dataMap);
+        List<List<String>> originalAnswers = csvData.getVarAnswers(dataMap);
 
         for(int i = 0; i < 2; i++){
-            Student student = create.create(input, output);
-            List<String> answers = asker.getAnswers(input, output);
+            Student student = creator.create(input, output);
+            List<String> answers = asker.getAnswers(input, output, question);
             student.setAnswers(answers);
         }
 
@@ -41,7 +47,7 @@ public class Main {
 
         for(int i = 0; i < 2; i++){
             Student student = studentService.getById(i).orElse(new Student("default", "default"));
-            int scoreInt = score.calcScore(student, data);
+            int scoreInt = score.calcScore(student.getAnswers(), originalAnswers);
             student.setScore(scoreInt);
             System.out.println(student.toString());
         }

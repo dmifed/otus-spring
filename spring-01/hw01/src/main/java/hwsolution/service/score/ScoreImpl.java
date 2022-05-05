@@ -2,25 +2,19 @@ package hwsolution.service.score;
 
 import hwsolution.domain.Student;
 import hwsolution.service.data.CSVData;
+import hwsolution.service.data.Data;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ScoreImpl implements Score{
-    CSVData csvData;
-
-    public ScoreImpl(CSVData csvData) {
-        this.csvData = csvData;
-    }
 
     @Override
-    public int calcScore(Student student, File data) {
+    public int calcScore(List<String> studentAnswers, List<List<String>> originalAnswers) {
         int score = 0;
-        List<String> rightAnswers = new ArrayList<>(csvData.getData(data).keySet());
-        List<String> studentAnswers = student.getAnswers();
-        for(int i = 0; i < studentAnswers.size(); i++){
-            String[] varsAnswer = rightAnswers.get(i).split("&&");
+            for(int i = 0; i < studentAnswers.size(); i++){
+            List<String> varsAnswer = originalAnswers.get(i);
             for(String ans : varsAnswer){
                 if(studentAnswers.get(i).equalsIgnoreCase(ans)){
                     ++score;

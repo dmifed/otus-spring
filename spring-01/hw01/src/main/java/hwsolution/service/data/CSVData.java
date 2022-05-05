@@ -26,6 +26,16 @@ public class CSVData implements Data{
         return data;
     }
 
+    @Override
+    public List<String> getQuestions(Map<String, List<String>> data){
+        return new ArrayList<>(data.keySet());
+    }
+
+    @Override
+    public List<List<String>> getVarAnswers(Map<String, List<String>> data){
+        return new ArrayList<>(data.values());
+    }
+
 
 
 

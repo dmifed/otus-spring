@@ -5,7 +5,7 @@ import hwsolution.domain.Student;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class CreateImpl implements Create{
+public class CreatorImpl implements Creator {
 
     @Override
     public Student create(Scanner input, PrintStream output) {
