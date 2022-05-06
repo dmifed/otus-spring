@@ -1,8 +1,12 @@
 package hwsolution.service.student;
 
+import hwsolution.dao.StudentDao;
+import hwsolution.dao.StudentDaoImpl;
 import hwsolution.domain.Student;
+import hwsolution.domain.StudentHolder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.stubbing.OngoingStubbing;
 
@@ -15,23 +19,19 @@ import static org.junit.jupiter.api.Assertions.*;
 class StudentServiceImplTest {
     Student testStudent;
     List<Student> testStudentList;
-    StudentServiceImpl studentService = Mockito.mock(StudentServiceImpl.class);
+    StudentDao studentDaoMock = Mockito.mock(StudentDao.class);
+    StudentServiceImpl studentService = new StudentServiceImpl(studentDaoMock);
 
     @BeforeEach
     void setUp() {
         testStudent = new Student("F", "L");
         testStudent.setId(0);
-        testStudentList = new ArrayList<>();
-        testStudentList.add(testStudent);
     }
 
     @Test
     void getById() {
-        Student optionalStudent =
-                (Student) Mockito.when(studentService.getById(0)).thenReturn(Optional.ofNullable(testStudentList.get(0)));
-        assertEquals(optionalStudent.getId(), testStudent.getId());
-
-
+        Mockito.when(studentDaoMock.findById(0)).thenReturn(Optional.ofNullable(testStudent));
+        assertEquals(studentService.getById(0).orElseThrow().getId(), studentDaoMock.findById(0).orElseThrow().getId());
     }
 
     @Test
