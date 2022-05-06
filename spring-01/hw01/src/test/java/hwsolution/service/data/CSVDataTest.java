@@ -3,7 +3,6 @@ package hwsolution.service.data;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -51,11 +50,7 @@ class CSVDataTest {
 
     @AfterEach
     void tearDown() {
-        try {
-            Files.deleteIfExists(path);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        path.toFile().deleteOnExit();
     }
 
     @Test
