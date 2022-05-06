@@ -2,6 +2,7 @@ package hwsolution;
 
 import hwsolution.domain.PropertyFile;
 import hwsolution.domain.Student;
+import hwsolution.domain.StudentHolder;
 import hwsolution.exceptions.PropertiesNotFoundException;
 import hwsolution.service.ask.Asker;
 import hwsolution.service.create.Creator;
@@ -41,6 +42,7 @@ public class Main {
             Student student = creator.create(input, output);
             List<String> answers = asker.getAnswers(input, output, question);
             student.setAnswers(answers);
+            StudentHolder.addStudent(student);
         }
 
         input.close();

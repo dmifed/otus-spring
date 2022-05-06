@@ -10,8 +10,6 @@ import java.util.List;
 @ToString
 public class Student {
 
-    private static int ids = -1;
-
     @Getter
     private final String firstName;
 
@@ -23,7 +21,7 @@ public class Student {
 
     @Getter
     @ToString.Exclude
-    private final int id;
+    private long id = -1;
 
     @Getter
     @Setter
@@ -34,13 +32,18 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.answers = new ArrayList<>();
-        this.id = ++ids;
         StudentHolder.getStudents().add(this);
     }
 
     public void setScore(int score) {
         if (this.score == -1) {
             this.score = score;
+        }
+    }
+
+    public void setId(long id){
+        if(id == -1){
+            this.id = id;
         }
     }
 }
